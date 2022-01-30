@@ -1,0 +1,23 @@
+<img (load)="imgLoaded()" (error)="imgError()" [src]="img" *ngIf="img; else elseImg" alt="la imagen de la url que se ha insertado">
+<!-- <h3>{{ counter }}</h3> -->
+<ng-template #elseImg>
+  <img [src]="imgDefault" alt="Imagen de muestra para cuando no hay ninguna">
+</ng-template>
+
+<!--
+  – OUTPUTS –
+
+//Importar
+import { Output, EventEmitter } from ‘@angular/core’;
+
+//Crear evento
+@Output() loaded = new EventEmitter();
+
+imgLoaded() {
+console.log(‘loaded’);
+//Activar evento
+this.loaded.emit();
+}
+
+Pasar información del hijo al padre.
+-->

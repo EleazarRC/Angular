@@ -1,0 +1,144 @@
+<h1>Formulario</h1>
+<form (ngSubmit)="onRegister()" #myForm="ngForm">
+    <div class="input-group">
+      <label for="name">Nombre</label>
+      <input type="text" required id="name" name="name" [(ngModel)]="register.name"/>
+      <p>Mensaje de error</p>
+      <label for="email">Email</label>
+      <input type="text" required id="email" name="email" [(ngModel)]="register.email"/>
+      <p>Mensaje de error</p>
+      <label for="password">Password</label>
+      <input type="text" required id="password" name="password" [(ngModel)]="register.password"/>
+      <p>Mensaje de error  </p>
+    </div>
+    <button [disabled]="myForm.invalid" type="submit"> Registrar </button>
+    <button type="button"> Accion </button>
+</form>
+
+<h1>NgClass & NgStyle</h1>
+<input type="text" required #nameInput4="ngModel" [(ngModel)]="person.name" >
+<hr class="line-error"
+  [ngClass]="{
+    'valid': nameInput4.valid,
+    'invalid': nameInput4.invalid
+
+  }"
+/>
+<p class="message-error" [class.invalid]="nameInput4.invalid">El campo es requerido.</p>
+
+<div class="styles">
+  <div>
+    <input type="number" [(ngModel)]="box.width">
+    <input type="number" [(ngModel)]="box.height">
+    <input type="color" [(ngModel)]="box.background">
+  </div>
+  <div>
+    <div [ngStyle]="{
+            'width.px': box.width,
+            'height.px': box.height,
+            'background-color': box.background,
+            'display': 'block'
+      }">
+
+    </div>
+  </div>
+</div>
+
+
+
+<h1>Class & Style</h1>
+<input type="text" required #nameInput2="ngModel" [(ngModel)]="person.name" >
+<p class="message-error" [class.active]="nameInput2.invalid">El campo es requerido.</p>
+
+<label> Nombre </label>
+<input type="text" required #nameInput3="ngModel" [(ngModel)]="person.name" >
+<p [style.font-style]="nameInput3.invalid ? 'italic' : 'normal'" >Texto texto texto</p>
+<hr>
+
+<div class="styles">
+  <div>
+    <input type="text" [(ngModel)]="widtImg" >
+  </div>
+  <div>
+    <img [style.width.px]="widtImg" [src]="person.avatar" alt="imagen de prueba">
+  </div>
+</div>
+
+
+<hr>
+<h1>ngSwitch</h1>
+<input type="text" require [(ngModel)]="person.name" />
+<div [ngSwitch]="person.name">
+<p *ngSwitchCase="'ele'">ele</p>
+<p *ngSwitchCase="'pep'">pep</p>
+<p *ngSwitchCase="'lol'">lol</p>
+<p *ngSwitchDefault>def</p>
+</div>
+
+
+<hr>
+<h1>*ngFor Objs</h1>
+<div class="products--grid">
+    <div *ngFor="let product of products">
+      <img width="250" [src]="product.image" alt="product.name">
+      <h2>{{ product.price }}</h2>
+      <p> {{ product.name }}</p>
+    </div>
+</div>
+
+<hr>
+<h1>*ngFor</h1>
+<input type="text" require [(ngModel)]="newEmoji" />
+<button (click)="addEmoji()">Add Emoji</button>
+<ul>
+  <li *ngIf="emojis.length === 0">Ya no quedan Emojis 🙄</li>
+  <li *ngFor="let emoji of emojis; index as i">
+    {{ i + 1}} {{ emoji }}
+  <button (click)="deleteEmoji(i)">Delete</button>
+</li>
+</ul>
+
+<hr>
+<h1>*ngIf</h1>
+<input type="text" require [(ngModel)]="person.name" />
+<p *ngIf="person.name === 'eleazar'">Soy eleazar</p>
+<p *ngIf="person.name === 'julian' && person.age===18; else elseBlock"> Soy julian</p>
+<ng-template #elseBlock>
+    <p>Bloque else</p>
+</ng-template>
+
+
+<hr>
+<h1>NgModel</h1>
+<p>Nombre {{ person.name }}</p>
+<input type="text" required #nameInput="ngModel" [(ngModel)]="person.name">
+<p>Valid: {{ nameInput.valid }}</p>
+<p>Age {{ person.age }}</p>
+<input type="number" max="18" min="10" required #ageInput="ngModel" [(ngModel)]="person.age">
+<p>Valid: {{ ageInput.valid }}</p>
+
+<hr>
+<h1>Eventos</h1>
+<button [disabled]="btnDisable" > Button</button>
+<button (click)="toggleButton()">Toggle Button</button>
+<p> Edad {{ person.age }}</p>
+<button (click)="increaseAge()">Age ++</button>
+<div class="box" (scroll)="onScroll( $event )">
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, soluta sequi? Ducimus porro sit possimus nobis ut ea sint quam, eligendi maiores nemo, libero modi, quia soluta deserunt doloremque perspiciatis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo fugiat amet ducimus nam pariatur, ratione fuga voluptas maiores recusandae nesciunt aut quia alias porro corporis nihil repellat earum ut non!</p>
+</div>
+<input type="text" [value]="person.name" (keyup)="onKeyUp( $event )">
+<p>Nombre {{ person.name }}</p>
+
+<hr>
+<h1>Propiedades</h1>
+<hr>
+<button [disabled]="btnDisable" > Button</button>
+<input type="text" [value]="person.name">
+<progress max="100" [value]="person.age"></progress>
+<img width="100" [src]="person.avatar" alt="imagen de prueba">
+<hr>
+<h1>Hola Mundo</h1>
+<h2>{{ 'Hola Mundo'.repeat(5) }}</h2>
+<p> 3 + 3 = {{ 3 + 3 }} </p>
+<p> Soy: {{ name }} y tengo {{ age }}</p>
+<img width="250px" src="{{img}}" alt="imagen de prueba">

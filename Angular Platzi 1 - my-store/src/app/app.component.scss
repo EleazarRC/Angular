@@ -1,0 +1,41 @@
+.box {
+  height: 200px;
+  width: 200px;
+  overflow: auto;
+  background: red;
+
+}
+
+.products--grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 15px;
+}
+
+.message-error {
+  background: red;
+  color: white;
+  opacity: 0;
+  transition: all linear .5s;
+  &.active{
+    opacity: 100;
+  }
+
+}
+
+.styles{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
+.line-error {
+  height: 0;
+  border-bottom: 1px solid;
+  &.invalid{
+    border-color: rgb(251, 0, 0);
+  }
+  &.valid{
+    border-color: rgb(0, 0, 0);
+  }
+}
